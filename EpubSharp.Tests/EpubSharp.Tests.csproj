@@ -25,6 +25,7 @@
   <ItemGroup>
     <Folder Include="Properties\" />
     <Folder Include="Properties\" />
+    <Folder Include="Samples\epub-assorted\" />
   </ItemGroup>
 
 </Project>
