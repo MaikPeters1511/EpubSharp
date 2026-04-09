@@ -78,7 +78,10 @@ namespace EpubSharp.Format
         {
             var path = FindCoverPath();
             var meta = Metadata.FindAndDeleteCoverMeta();
-            Manifest.DeleteCoverItem(meta?.Text);
+            // For EPUB2: meta.Text holds the cover manifest item ID (read from content="" attribute)
+            // For EPUB3 with EPUB2-style meta: meta.Text is empty → fall back to FindCoverItem() via null
+            var coverId = string.IsNullOrEmpty(meta?.Text) ? null : meta.Text;
+            Manifest.DeleteCoverItem(coverId);
             return path;
         }
         
